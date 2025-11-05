@@ -1,0 +1,93 @@
+@use "sass:map";
+
+// z-index
+
+$v1: red;
+$v2: blue;
+
+
+@function anim($name: 'bubble') {
+	$data: (
+		'bubble': cubic-bezier(.65, 1.99, .7, 1.28)
+	);
+
+@return map.get($data, $name)
+}
+
+;
+
+
+// media
+
+$viewport: (
+	"max": 1440px,
+	"desktop": 1280px,
+	"laptop": 1024px,
+	"tablet": 768px,
+	"phone": 480px,
+	"min": 360px,
+);
+
+
+@function screen($name: "phone") {
+	@return map.get($viewport, $name)
+}
+
+;
+
+
+
+// colors
+
+@function cl($name: "b", $a: 1) {
+
+	$list: (
+		"b": rgba($color: #000, $alpha: $a),
+		"w": rgba($color: #fff, $alpha: $a),
+		"white": rgba($color: #E9E9E9, $alpha: $a),
+		"black": rgba($color: #141414, $alpha: $a),
+		"dark": rgba($color: #1B1B1B, $alpha: $a),
+		"orange": rgba($color: #DC562C, $alpha: $a),
+		"green": rgba($color: #43875E, $alpha: $a),
+		"red": rgba($color: #C83939, $alpha: $a),
+		"gray": rgba($color: #727272, $alpha: $a),
+	);
+
+
+@return map.get($list, $name)
+}
+
+;
+
+
+$colors: (
+	"text": cl('white'),
+	"second": cl('gray'),
+	"sec-bg": cl('black'),
+	"main-bg": cl('dark'),
+	"decor": cl('orange'),
+);
+
+
+
+
+@function hue($name: "text", $a: 1) {
+	@return rgba($color: map.get($colors, $name), $alpha: $a)
+}
+
+;
+
+
+
+
+// --------------------- set root color vars
+
+:root {
+	@each $key, $value in $colors {
+		--cl-#{$key} : #{$value};
+	}
+
+	@each $key, $value in $viewport {
+		--w-#{$key} : #{$value};
+	}
+}

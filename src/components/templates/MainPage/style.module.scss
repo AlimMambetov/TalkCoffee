@@ -1,0 +1,38 @@
+.wrap {
+	width: 100%;
+	height: 100vh;
+	background-color: #111;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1vw;
+	font-size: 10vw;
+
+	span {
+		color: #5ca8ff;
+	}
+
+	svg {
+		font-size: 2em;
+		animation: next_anim 1s ease-in-out infinite alternate;
+
+	}
+
+	p {
+		font-size: .5em
+	}
+}
+
+
+
+@keyframes next_anim {
+	from {
+		scale: 1;
+	}
+
+	to {
+		scale: 0.9;
+	}
+}

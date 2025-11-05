@@ -1,0 +1,8 @@
+body,
+html {
+	background: var(--background-default-default, #fff);
+}
+
+// :where(.btn) { стили по умолчанию
+// 	font-family: 'Inter';
+// }
