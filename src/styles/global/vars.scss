@@ -1,82 +1,83 @@
 @use "sass:map";
 
-// z-index
+$z-indexes: (
+	'max',
+	'notice',
+	'modal',
+	'overlay',
+	'pin',
+	'block',
+	'base',
+	'hidden',
+);
 
-$v1: red;
-$v2: blue;
+@function z($name) {
+	@if index($z-indexes, $name) {
+		@return (length($z-indexes) - index($z-indexes, $name))-1;
+	}
 
-
-@function anim($name: 'bubble') {
-	$data: (
-		'bubble': cubic-bezier(.65, 1.99, .7, 1.28)
-	);
-
-@return map.get($data, $name)
+	@else {
+		@error 'Ключ `#{$name}` не найден. Доступные ключи:: #{$z-indexes}';
+	}
 }
 
-;
-
-
-// media
 
 $viewport: (
-	"max": 1440px,
-	"desktop": 1280px,
-	"laptop": 1024px,
-	"tablet": 768px,
-	"phone": 480px,
-	"min": 360px,
+	max: 1440px,
+	desktop: 1280px,
+	laptop: 1024px,
+	tablet: 768px,
+	phone: 480px,
+	min: 360px,
 );
 
 
 @function screen($name: "phone") {
-	@return map.get($viewport, $name)
+	@if not map.has-key($viewport, $name) {
+		@error "Ключ `#{$name}` не найден. Доступные ключи: #{map.keys($viewport)}";
+	}
+
+	@return map.get($viewport, $name);
 }
 
-;
 
+$palette: (
+	'white': #FFFFFF,
+	'black': #282A2C,
+	'orange':#F15A29,
+	'green': #43875E,
+	'red': #C83939,
+	'gray': #808080,
+);
 
+@function palette($name) {
+	@if not map.has-key($palette, $name) {
+		@error "Ключ `#{$name}` не найден. Доступные ключи. Доступные цвета: #{map.keys($palette)}";
+	}
 
-// colors
-
-@function cl($name: "b", $a: 1) {
-
-	$list: (
-		"b": rgba($color: #000, $alpha: $a),
-		"w": rgba($color: #fff, $alpha: $a),
-		"white": rgba($color: #E9E9E9, $alpha: $a),
-		"black": rgba($color: #141414, $alpha: $a),
-		"dark": rgba($color: #1B1B1B, $alpha: $a),
-		"orange": rgba($color: #DC562C, $alpha: $a),
-		"green": rgba($color: #43875E, $alpha: $a),
-		"red": rgba($color: #C83939, $alpha: $a),
-		"gray": rgba($color: #727272, $alpha: $a),
-	);
-
-
-@return map.get($list, $name)
+	@return map.get($palette, $name);
 }
-
-;
 
 
 $colors: (
-	"text": cl('white'),
-	"second": cl('gray'),
-	"sec-bg": cl('black'),
-	"main-bg": cl('dark'),
-	"decor": cl('orange'),
+	b: #000,
+	w: #fff,
+	plain: palette('white'),
+	primary: palette('orange'),
+	second: palette('gray'),
+	heavy: palette('black'),
+	danger: palette('red'),
+	success: palette('green'),
 );
 
 
+@function hue($name: "b", $a: 1) {
+	@if not map.has-key($colors, $name) {
+		@error "Ключ `#{$name}` не найден. Доступные ключи: #{map.keys($colors)}";
+	}
 
-
-@function hue($name: "text", $a: 1) {
-	@return rgba($color: map.get($colors, $name), $alpha: $a)
+	@return rgba(map.get($colors, $name), $a);
 }
-
-;
-
 
 
 
@@ -84,7 +85,7 @@ $colors: (
 
 :root {
 	@each $key, $value in $colors {
-		--cl-#{$key} : #{$value};
+		--clr-#{$key} : #{$value};
 	}
 
 	@each $key, $value in $viewport {

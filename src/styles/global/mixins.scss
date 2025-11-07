@@ -7,6 +7,286 @@
 }
 
 
-// .block{
-// 	@include line-clamp(2);
-// }
+@mixin is($device: "phone") {
+	$_value: map.get($viewport, $device);
+
+	@media(width > $_value) {
+		@content;
+	}
+}
+
+@mixin a-value($prop, $min, $max) {
+	$_prop: $prop;
+	$_props: (
+		fz: font-size,
+		l: left,
+		r: right,
+		t: top,
+		b: bottom,
+		g: gap,
+
+		w: width,
+		max-w: max-width,
+		min-w: min-width,
+
+		h: height,
+		max-h: max-height,
+		min-h: min-height,
+
+		br: border-radius,
+		btr: border-top-right-radius,
+		btl: border-top-left-radius,
+		bbr: border-bottom-right-radius,
+		bbl: border-bottom-left-radius,
+
+		p: padding,
+		pr: padding-right,
+		pl: padding-left,
+		pt: padding-top,
+		pb: padding-bottom,
+
+		m: margin,
+		mr: margin-right,
+		ml: margin-left,
+		mt: margin-top,
+		mb: margin-bottom,
+	);
+
+@if map.get($_props, $prop) {
+	$_prop: map.get($_props, $prop);
+}
+
+
+#{$_prop}: clamp($min, $min, $max);
+
+@media(width > screen('phone')) {
+	#{$_prop}: calc($min + (($max - $min) * 0.25))
+}
+
+@media(width > screen('tablet')) {
+	#{$_prop}: calc($min + (($max - $min) * 0.50))
+}
+
+@media(width > screen('laptop')) {
+	#{$_prop}: calc($min + (($max - $min) * 0.75))
+}
+
+@media(width > screen('desktop')) {
+	#{$_prop}: clamp($min, $max , $max)
+}
+
+}
+
+@mixin hover($disable-active: false) {
+
+	@media(hover: hover) {
+		&:not([disabled]):hover {
+			@content
+		}
+
+		;
+	}
+
+	@media(hover: none) {
+		@if($disable-active ==false) {
+			&:active {
+				@content
+			}
+
+			;
+		}
+	}
+}
+
+
+
+@mixin pos-center($a: xy) {
+	position: absolute;
+
+	@if($a ==xy) {
+		left: 50%;
+		top: 50%;
+		translate: -50% -50%;
+	}
+
+	@if($a ==x) {
+		left: 50%;
+		translate: -50%;
+	}
+
+	@if($a ==y) {
+		top: 50%;
+		translate: 0 -50%;
+	}
+}
+
+
+@mixin flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+@mixin flex-col($gap: 0px, $a: '', $b: '') {
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+
+	@if($a =='x-center') {
+		align-items: center;
+	}
+
+	@if($a =='x-start') {
+		align-items: flex-start;
+	}
+
+	@if($a =='x-end') {
+		align-items: flex-end;
+	}
+
+	@if($a =='y-center') {
+		justify-content: center;
+	}
+
+	@if($a =='y-start') {
+		justify-content: flex-start;
+	}
+
+	@if($a =='y-end') {
+		justify-content: flex-end;
+	}
+
+	@if($b =='x-center') {
+		align-items: center;
+	}
+
+	@if($b =='x-start') {
+		align-items: flex-start;
+	}
+
+	@if($b =='x-end') {
+		align-items: flex-end;
+	}
+
+	@if($b =='y-center') {
+		justify-content: center;
+	}
+
+	@if($b =='y-start') {
+		justify-content: flex-start;
+	}
+
+	@if($b =='y-end') {
+		justify-content: flex-end;
+	}
+}
+
+@mixin flex-row($gap: 0px, $a: '', $b: '') {
+	display: flex;
+	flex-direction: row;
+	gap: $gap;
+
+	@if($a =='y-center') {
+		align-items: center;
+	}
+
+	@if($a =='y-start') {
+		align-items: flex-start;
+	}
+
+	@if($a =='y-end') {
+		align-items: flex-end;
+	}
+
+	@if($a =='x-center') {
+		justify-content: center;
+	}
+
+	@if($a =='x-start') {
+		justify-content: flex-start;
+	}
+
+	@if($a =='x-end') {
+		justify-content: flex-end;
+	}
+
+	@if($b =='y-center') {
+		align-items: center;
+	}
+
+	@if($b =='y-start') {
+		align-items: flex-start;
+	}
+
+	@if($b =='y-end') {
+		align-items: flex-end;
+	}
+
+	@if($b =='x-center') {
+		justify-content: center;
+	}
+
+	@if($b =='x-start') {
+		justify-content: flex-start;
+	}
+
+	@if($b =='x-end') {
+		justify-content: flex-end;
+	}
+}
+
+@mixin m-center {
+	margin: {
+		left: auto;
+		right: auto;
+	}
+
+	;
+}
+
+@mixin pseudo($content: '', $display: block, $pos: absolute) {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+@mixin line-clamp($lines: 1) {
+	display: -webkit-box;
+	-webkit-line-clamp: $lines;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin flow($props, $time: 0.3s, $anim: ease) {
+	transition-duration: $time;
+	transition-timing-function: $anim;
+	transition-property: $props;
+}
+
+
+@mixin a-click($value: null) {
+	@if($value !=null) {
+		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28), $value;
+	}
+
+	@else {
+		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28);
+	}
+
+	;
+
+	&:active {
+		scale: 0.9;
+		@content;
+	}
+}
+
+
+
+@mixin sec-p {
+
+	@include a-value(pt, 60px, 100px);
+	@include a-value(pb, 60px, 100px);
+}

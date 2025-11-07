@@ -4,30 +4,22 @@
 			"name": "Config Files",
 			"path": "."
 		},
-		// {
-		// 	"name": "Public",
-		// 	"path": "./public"
-		// },
-		// {
-		// 	"name": "Source",
-		// 	"path": "./src"
-		// },
 		{
 			"name": "Assets",
-			"path": "./public"
+			"path": "public"
 		},
 		{
 			"name": "Router",
-			"path": "./src/app"
+			"path": "src/app"
 		},
 		{
 			"name": "Components",
-			"path": "./src/components"
+			"path": "src/components"
 		},
 		{
 			"name": "Core",
-			"path": "./src"
-		},
+			"path": "src"
+		}
 	],
 	"settings": {
 		"files.exclude": {
