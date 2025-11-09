@@ -1,0 +1,32 @@
+.wrap {
+	height: calc(80vh - var(--header-h));
+	width: 100%;
+}
+
+.cont {
+	height: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	justify-content: center;
+}
+
+.mainImage {
+	height: clamp(600px, 90%, 700px);
+	left: 0;
+	position: absolute;
+	translate: -25%;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	text-align: right;
+	align-items: end;
+}
+
+.text {
+	color: hue('second')
+}

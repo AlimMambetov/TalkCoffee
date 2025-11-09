@@ -12,6 +12,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 4vw;
 }
 
 
@@ -27,4 +28,6 @@
 	}
 }
 
-.nav {}
+.nav {
+	flex: 1;
+}
