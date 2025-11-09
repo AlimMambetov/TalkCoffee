@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import "@/styles/index.scss";
-import ReduxProvider from "@/app/_providers/ReduxProvider";
 import { AppProviders } from "./_providers";
+import { Footer, Header } from "@/components/layout";
+import { fontComfortaa } from "@/scripts/fonts";
 
 export const metadata: Metadata = {
   title: "TalkCoffee",
-  description: "",
+  description: "Кофе с характером, десерты с душой. В самом сердце Чегема!",
 };
 
 export default async function RootLayout({
@@ -16,19 +17,19 @@ export default async function RootLayout({
 
 
   return (<>
-    <ReduxProvider>
-      <html lang="ru">
-        <head>
-          {/* <link rel="icon" type="image/svg" href="/icons/logo.svg" /> */}
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        </head>
-        <body>
-          <AppProviders>
-            {children}
-          </AppProviders>
-        </body>
-      </html>
-    </ReduxProvider>
+    <html lang="ru" className={fontComfortaa.variable}>
+      <head>
+        <link rel="icon" type="image/svg" href="/images/icon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      </head>
+      <body>
+        <AppProviders>
+          <Header />
+          {children}
+          <Footer />
+        </AppProviders>
+      </body>
+    </html>
   </>);
 }
