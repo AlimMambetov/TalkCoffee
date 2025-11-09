@@ -1,8 +1,6 @@
-body,
-html {
-	background: var(--background-default-default, #fff);
-}
+@use "@/styles/global/vars.scss" as *;
+@use "@/styles/global/mixins.scss" as *;
+@use "@/styles/global/funcs.scss" as *;
 
-// :where(.btn) { стили по умолчанию
-// 	font-family: 'Inter';
-// }
+body,
+html {}

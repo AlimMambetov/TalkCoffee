@@ -1,8 +1,9 @@
 'use client'
 import React from 'react';
 import cls from './style.module.scss';
-import { Icon } from '@/components/ui';
+import { Button, Icon, Img, LinkText, Text, Title } from '@/components/ui';
 import { useDeviceType } from '@/hooks';
+import HeroSection from '@/components/modules/HeroSection';
 
 export const MainPage = (props: any) => {
 	const device = useDeviceType();
@@ -11,11 +12,7 @@ export const MainPage = (props: any) => {
 
 	console.log(device)
 	return (<>
-		<div className={cls.wrap}>
-			<Icon name='next' />
-			<h1>Next <span>TS</span></h1>
-			<p>device: {device}</p>
-		</div>
+		<HeroSection />
 	</>)
 }
 

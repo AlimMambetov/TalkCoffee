@@ -1,11 +1,21 @@
-// ::-webkit-scrollbar {
-// 	width: 0.2em;
-// 	border-radius: 0;
-// 	display: block;
-// 	background-color: var(--c-text);
-// }
+@use "@/styles/global/vars.scss" as *;
+@use "@/styles/global/mixins.scss" as *;
+@use "@/styles/global/funcs.scss" as *;
 
-// ::-webkit-scrollbar-thumb {
-// 	background: var(--c-decor);
-// 	border-radius: 0;
-// }
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	border-radius: 0;
+	display: block;
+	background-color: hue(plain);
+
+	@include is('phone') {
+		width: 3px;
+		height: 3px;
+	}
+}
+
+::-webkit-scrollbar-thumb {
+	background: color-mix(in srgb, hue(primary), #fff 20%);
+	border-radius: 0;
+}

@@ -1,4 +1,5 @@
 @use "sass:map";
+@use "sass:list";
 
 $z-indexes: (
 	'max',
@@ -31,13 +32,49 @@ $viewport: (
 	min: 360px,
 );
 
-
 @function screen($name: "phone") {
 	@if not map.has-key($viewport, $name) {
 		@error "Ключ `#{$name}` не найден. Доступные ключи: #{map.keys($viewport)}";
 	}
 
 	@return map.get($viewport, $name);
+}
+
+@mixin is($device: "phone") {
+	$devices: phone, tablet, laptop, desktop, max;
+	$index: list.index($devices, $device);
+
+	@if $index ==1 {
+		@media (max-width: map.get($viewport, $device)) {
+			@content;
+		}
+	}
+
+	@else {
+		$prev: nth($devices, $index - 1);
+		$min: map.get($viewport, $prev) + 1px;
+		$max: map.get($viewport, $device);
+
+		@media (min-width: $min) and (max-width: $max) {
+			@content;
+		}
+	}
+}
+
+$radius: (
+	round: 100000px,
+	L: 30px,
+	M: 20px,
+	S: 10px,
+);
+
+
+@function radius($name: "S") {
+	@if not map.has-key($radius, $name) {
+		@error "Ключ `#{$name}` не найден. Доступные ключи: #{map.keys($viewport)}";
+	}
+
+	@return map.get($radius, $name);
 }
 
 

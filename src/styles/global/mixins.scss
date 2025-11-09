@@ -7,13 +7,6 @@
 }
 
 
-@mixin is($device: "phone") {
-	$_value: map.get($viewport, $device);
-
-	@media(width > $_value) {
-		@content;
-	}
-}
 
 @mixin a-value($prop, $min, $max) {
 	$_prop: $prop;
@@ -77,23 +70,10 @@
 
 }
 
-@mixin hover($disable-active: false) {
-
-	@media(hover: hover) {
+@mixin on-hover {
+	@media (hover: hover) and (pointer: fine) {
 		&:not([disabled]):hover {
-			@content
-		}
-
-		;
-	}
-
-	@media(hover: none) {
-		@if($disable-active ==false) {
-			&:active {
-				@content
-			}
-
-			;
+			@content;
 		}
 	}
 }

@@ -1,0 +1,52 @@
+:where(.title) {
+	font-weight: bold;
+	line-height: 1;
+	color: hue(heavy);
+	position: relative;
+}
+
+h1.title {
+	font-size: 74px;
+	line-height: 0.9;
+}
+
+h2.title {
+	font-size: 64px;
+	line-height: 0.9;
+}
+
+h3.title {
+	font-size: 48px;
+}
+
+h4.title {
+	font-size: 35px;
+}
+
+h5.title {
+	font-size: 24px;
+}
+
+h6.title {
+	font-size: 20px;
+}
+
+.title {
+
+	&[data-line] {
+		padding-left: 0.3em;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0em;
+			top: 50%;
+			translate: 0 -50%;
+			height: 120%;
+			width: 0.16em;
+			border-radius: radius(round);
+			background-color: hue(primary);
+		}
+
+	}
+}

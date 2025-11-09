@@ -1,0 +1,78 @@
+	:where(.btn) {
+		width: var(--default-width);
+		overflow: hidden;
+		position: relative;
+		font-weight: bold;
+		font-size: 18px;
+		border: none;
+		user-select: none;
+		cursor: pointer;
+		border-radius: radius(S);
+		padding: 0.8em 1.6em;
+		white-space: nowrap;
+	}
+
+	.btn {
+		border: 2px solid transparent;
+
+		&[data-color=primary] {
+			color: hue(plain);
+			background-color: hue(primary);
+			border-color: color-mix(in srgb, hue(primary), #fff);
+		}
+
+		&[data-color=heavy] {
+			color: hue(plain);
+			background-color: hue(heavy);
+			border-color: color-mix(in srgb, hue(heavy), #fff);
+		}
+
+		&[data-color=plain] {
+			color: hue(heavy);
+			background-color: hue(plain);
+			border-color: color-mix(in srgb, hue(heavy), #fff);
+
+			&::after {
+				content: none;
+			}
+
+		}
+
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -60%;
+			width: 20%;
+			height: 200%;
+			background: rgba(255, 255, 255, 0.3);
+			transform: rotate(30deg);
+			transition: all 0.5s;
+		}
+
+
+		@include on-hover {
+			animation: text_anim 0.3s;
+
+			&::after {
+				left: 120%;
+			}
+		}
+
+
+	}
+
+	@keyframes text_anim {
+
+		0%,
+		100% {
+			padding-top: 0.8em;
+			padding-bottom: 0.8em;
+		}
+
+		50% {
+			padding-top: 0.6em;
+			padding-bottom: 1em;
+		}
+	}

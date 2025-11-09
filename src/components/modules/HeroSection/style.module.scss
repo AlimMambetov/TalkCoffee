@@ -1,0 +1,26 @@
+.wrap {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+	justify-content: center;
+}
+
+.mainImage {
+	height: 73%;
+	left: 0;
+	position: absolute;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	text-align: right;
+	align-items: end;
+}
+
+.text {
+	color: hue('second')
+}

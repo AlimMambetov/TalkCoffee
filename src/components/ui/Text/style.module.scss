@@ -1,0 +1,27 @@
+:where(.text) {
+	font-weight: 300;
+	color: hue(heavy);
+	line-height: 1;
+}
+
+
+
+
+.text {
+
+	&[data-size="1"] {
+		font-size: 26px;
+	}
+
+	&[data-size="2"] {
+		font-size: 22px;
+	}
+
+	&[data-size="3"] {
+		font-size: 18px;
+	}
+
+	&[data-size="4"] {
+		font-size: 16px;
+	}
+}
