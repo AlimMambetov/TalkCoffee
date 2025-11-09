@@ -1,0 +1,32 @@
+.textBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 39px;
+	z-index: z('block');
+	position: relative;
+}
+
+.title {
+	margin-bottom: 9px;
+	color: hue('plain');
+}
+
+.text {
+	max-width: 510px;
+	color: hue('plain');
+
+}
+
+.section {
+	background-color: hue('primary');
+	padding: 80px 0px;
+	position: relative;
+	overflow: hidden;
+}
+
+.image {
+	position: absolute;
+	width: 50vw;
+	top: 0;
+	right: 0;
+}

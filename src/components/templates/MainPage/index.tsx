@@ -2,7 +2,7 @@
 import React from 'react';
 import cls from './style.module.scss';
 import { useDeviceType } from '@/hooks';
-import HeroSection from '@/components/modules/HeroSection';
+import { AboutSection, HeroSection } from '@/components/modules';
 
 export const MainPage = (props: any) => {
 	const device = useDeviceType();
@@ -12,6 +12,7 @@ export const MainPage = (props: any) => {
 	console.log(device)
 	return (<>
 		<HeroSection />
+		<AboutSection />
 	</>)
 }
 
