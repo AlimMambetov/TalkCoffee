@@ -16,17 +16,6 @@
 }
 
 
-.logo {
-	height: auto;
-	width: 130px;
-	cursor: pointer;
-	transition: color 0.3s;
-
-
-	@include on-hover {
-		color: hue(primary);
-	}
-}
 
 .nav {
 	flex: 1;

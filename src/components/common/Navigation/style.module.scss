@@ -2,12 +2,18 @@
 	display: inline-flex;
 	gap: 10px;
 
+
+	&[data-mode=footer] * {
+		color: hue('plain');
+	}
+
 }
 
 
 .link {
 	padding: 0.2em 0.5em;
 	white-space: nowrap;
+	color: currentColor;
 
 	* {
 		transition: color 0.2s;

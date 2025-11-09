@@ -1,0 +1,18 @@
+.link {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid;
+	border-radius: radius('S');
+	width: 50px;
+	aspect-ratio: 1/1;
+	color: hue(second);
+	font-size: 22px;
+	transition: color 0.2s;
+	cursor: pointer;
+	user-select: none;
+
+	@include on-hover {
+		color: hue(primary);
+	}
+}

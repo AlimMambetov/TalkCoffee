@@ -1,0 +1,35 @@
+.wrap {
+	background-color: hue(heavy);
+	@include sec-p;
+	color: hue(plain);
+
+
+	[data-block] {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
+
+.logo {}
+
+.grid {
+	display: grid;
+	grid-template-columns: 0.8fr 1fr 0.8fr;
+	gap: 40px;
+}
+
+
+.nav,
+.socials {
+	align-self: center;
+}
+
+
+.date {
+	grid-column: span 3;
+	text-align: center;
+	color: hue(second);
+	margin-top: 30px;
+}

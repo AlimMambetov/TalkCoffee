@@ -1,11 +1,11 @@
-@mixin line-clamp($num: 3) {
-	display: -webkit-box;
-	-webkit-line-clamp: $num;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
+@mixin sec-p {
+	padding: {
+		top: 80px;
+		bottom: 80px;
+	}
 
+	;
+}
 
 
 @mixin a-value($prop, $min, $max) {
@@ -243,30 +243,4 @@
 	transition-duration: $time;
 	transition-timing-function: $anim;
 	transition-property: $props;
-}
-
-
-@mixin a-click($value: null) {
-	@if($value !=null) {
-		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28), $value;
-	}
-
-	@else {
-		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28);
-	}
-
-	;
-
-	&:active {
-		scale: 0.9;
-		@content;
-	}
-}
-
-
-
-@mixin sec-p {
-
-	@include a-value(pt, 60px, 100px);
-	@include a-value(pb, 60px, 100px);
 }

@@ -4,18 +4,26 @@
 	color: hue(second);
 	display: inline-flex;
 	align-items: center;
-	gap: 0.2em;
+	gap: 0.3em;
 	transition: color 0.2s;
 	cursor: pointer;
+	line-height: 0.8;
 }
 
 .link {
 
 	@include on-hover {
 		color: hue(primary);
+
+		* {
+			color: hue(primary);
+		}
+
 	}
 
 	svg {
-		font-size: 0.8em;
+		transition: color 0.2s;
+		font-size: 0.85em;
+		translate: 0 -0.1em;
 	}
 }
