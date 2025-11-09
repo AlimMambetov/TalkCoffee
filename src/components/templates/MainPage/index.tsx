@@ -2,7 +2,7 @@
 import React from 'react';
 import cls from './style.module.scss';
 import { useDeviceType } from '@/hooks';
-import { AboutSection, HeroSection } from '@/components/modules';
+import { AboutSection, HeroSection, MenuSection } from '@/components/modules';
 
 export const MainPage = (props: any) => {
 	const device = useDeviceType();
@@ -13,6 +13,7 @@ export const MainPage = (props: any) => {
 	return (<>
 		<HeroSection />
 		<AboutSection />
+		<MenuSection />
 	</>)
 }
 
