@@ -1,0 +1,30 @@
+.wrap {
+	height: var(--header-h);
+	position: sticky;
+	top: 0;
+	background-color: hue(plain);
+	z-index: z('pin');
+}
+
+
+.grid {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
+.logo {
+	height: auto;
+	width: 130px;
+	cursor: pointer;
+	transition: color 0.3s;
+
+
+	@include on-hover {
+		color: hue(primary);
+	}
+}
+
+.nav {}

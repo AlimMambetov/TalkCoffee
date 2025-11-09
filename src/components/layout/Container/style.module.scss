@@ -1,0 +1,12 @@
+:where(.cont) {
+	margin: {
+		right: auto;
+		left: auto;
+	}
+
+	;
+
+	width: min(100%, screen(max));
+}
+
+.cont {}

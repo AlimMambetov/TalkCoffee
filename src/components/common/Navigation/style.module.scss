@@ -1,0 +1,22 @@
+.nav {
+	display: inline-flex;
+	gap: 10px;
+
+}
+
+
+.link {
+	padding: 0.2em 0.5em;
+	white-space: nowrap;
+
+	* {
+		transition: color 0.2s;
+	}
+
+	@include on-hover {
+		* {
+			color: hue(primary);
+		}
+	}
+
+}

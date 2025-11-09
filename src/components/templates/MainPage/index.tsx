@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
 import cls from './style.module.scss';
-import { Button, Icon, Img, LinkText, Text, Title } from '@/components/ui';
+import { Button, Icon, LinkText, Text, Title } from '@/components/ui';
 import { useDeviceType } from '@/hooks';
 
 export const MainPage = (props: any) => {
@@ -17,9 +17,8 @@ export const MainPage = (props: any) => {
 			<p>device: {device}</p>
 			<Button >Связаться с нами</Button>
 			<Title>My Title</Title>
-			<Text size={1}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae beatae suscipit iure accusantium pariatur dolorum fugit minima, exercitationem quaerat. Alias.</Text>
+			<Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae beatae suscipit iure accusantium pariatur dolorum fugit minima, exercitationem quaerat. Alias.</Text>
 			<LinkText icon='mark'>hello</LinkText>
-			<Img src={'/images/stars.svg'} />
 		</div>
 	</>)
 }

@@ -2,5 +2,13 @@
 @use "@/styles/global/mixins.scss" as *;
 @use "@/styles/global/funcs.scss" as *;
 
+
+
+:root {
+	--header-h: 80px;
+}
+
 body,
-html {}
+html {
+	position: relative;
+}
