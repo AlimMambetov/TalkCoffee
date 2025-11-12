@@ -11,6 +11,10 @@
 
 	&[data-size="1"] {
 		font-size: 26px;
+
+		@include is('phone') {
+			font-size: 15px;
+		}
 	}
 
 	&[data-size="2"] {
@@ -24,4 +28,6 @@
 	&[data-size="4"] {
 		font-size: 16px;
 	}
+
+
 }

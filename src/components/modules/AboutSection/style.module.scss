@@ -1,4 +1,11 @@
-.textBlock {
+.wrap {
+	@include sec-p;
+	background-color: hue('primary');
+	position: relative;
+	overflow: hidden;
+}
+
+.content {
 	display: flex;
 	flex-direction: column;
 	gap: 39px;
@@ -12,21 +19,47 @@
 }
 
 .text {
-	max-width: 510px;
+	max-width: 500px;
 	color: hue('plain');
-
+	text-align: justify;
+	hyphens: auto;
 }
 
-.section {
-	background-color: hue('primary');
-	padding: 80px 0px;
-	position: relative;
-	overflow: hidden;
-}
 
-.image {
+.preview {
 	position: absolute;
 	width: 50vw;
+	height: 100%;
 	top: 0;
 	right: 0;
+
+	[alt=texture] {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 500%;
+	}
+
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center center;
+		animation: moveObjectY 10s ease-in-out infinite;
+	}
+}
+
+
+@keyframes moveObjectY {
+
+	0%,
+	100% {
+		object-position: center 30%;
+		/* Начальная и конечная позиция */
+	}
+
+	50% {
+		object-position: center 70%;
+		/* Пиковая позиция внизу */
+	}
 }

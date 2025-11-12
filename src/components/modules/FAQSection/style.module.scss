@@ -1,0 +1,45 @@
+.wrap {
+	@include sec-p;
+	background-color: hue(heavy);
+	color: hue(plain);
+	position: relative;
+
+	h2 {
+		user-select: none;
+	}
+
+	[data-star='1'] {
+		position: absolute;
+		left: 50px;
+		top: 250px;
+		font-size: 300px;
+	}
+
+	[data-star='2'] {
+		position: absolute;
+		right: 20px;
+		bottom: 300px;
+		font-size: 350px;
+		rotate: 30deg;
+	}
+}
+
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	position: relative;
+	z-index: z('block');
+}
+
+
+.btn {
+	align-self: center;
+}

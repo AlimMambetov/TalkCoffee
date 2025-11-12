@@ -6,7 +6,7 @@
 
 	;
 
-	width: min(100%, screen(desktop));
+	width: min(calc(100% - 40px), screen(desktop));
 }
 
 .cont {}

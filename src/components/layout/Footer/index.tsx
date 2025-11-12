@@ -10,7 +10,7 @@ export const Footer = (props: any) => {
 
 
 	return (<>
-		<footer className={cls.wrap}>
+		<footer id='contacts' className={cls.wrap}>
 			<Container className={cls.grid}>
 				<Logo className={cls.logo} />
 				<Navigation className={cls.nav} mode={'footer'} />
@@ -33,7 +33,7 @@ export const Footer = (props: any) => {
 					<LinkText icon='mail'>talkcoffee.chegem@gmail.com</LinkText>
 					<LinkText icon='mark'>г. Чегем, ул. Ленина 123в</LinkText>
 				</div>
-				<Text size={3} className={cls.date}>© 2025 • by NajmLabs • v1.2.3</Text>
+				<Text size={3} className={cls.date}>© 2025 • by <span>NajmLabs</span> • v{process.env.APP_VERSION || '0.0.0'}</Text>
 			</Container>
 		</footer>
 	</>)

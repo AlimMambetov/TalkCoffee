@@ -8,6 +8,10 @@
 h1.title {
 	font-size: 74px;
 	line-height: 0.9;
+
+	@include is('phone') {
+		font-size: 24px;
+	}
 }
 
 h2.title {
@@ -41,7 +45,7 @@ h6.title {
 			position: absolute;
 			left: 0em;
 			top: 50%;
-			translate: 0 -50%;
+			translate: 0 -55%;
 			height: 120%;
 			width: 0.16em;
 			border-radius: radius(round);

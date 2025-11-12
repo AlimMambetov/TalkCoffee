@@ -5,25 +5,28 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 0.3em;
-	transition: color 0.2s;
 	cursor: pointer;
 	line-height: 0.8;
 }
 
 .link {
+	transition: color 0.3s;
+
+	svg {
+		transition: color 1.5s;
+		font-size: 0.85em;
+		translate: 0 -0.1em;
+	}
 
 	@include on-hover {
 		color: hue(primary);
 
-		* {
+		svg {
 			color: hue(primary);
+			transition: color 0.5s;
 		}
 
 	}
 
-	svg {
-		transition: color 0.2s;
-		font-size: 0.85em;
-		translate: 0 -0.1em;
-	}
+
 }

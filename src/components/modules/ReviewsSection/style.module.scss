@@ -1,0 +1,42 @@
+.wrap {
+	@include sec-p;
+
+	h2 svg {
+		cursor: pointer;
+	}
+
+	h2 {
+		margin-bottom: 30px;
+	}
+}
+
+.cont {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+
+.controlls {
+	display: flex;
+	justify-content: space-between;
+}
+
+.arrows {
+	display: flex;
+	gap: 10px;
+
+	button {
+		position: relative;
+		width: 150px;
+		overflow: hidden;
+	}
+
+	svg {
+		position: absolute;
+		font-size: 55px;
+		left: 50%;
+		top: 50%;
+		translate: -50% -50%;
+	}
+}

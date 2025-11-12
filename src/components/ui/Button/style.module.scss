@@ -10,54 +10,81 @@
 		border-radius: radius(S);
 		padding: 0.8em 1.6em;
 		white-space: nowrap;
+		transition: 0.3s opacity, 0.3s background-color, 0.3s border-color, 0.3s color;
+
+
+		@include is('phone') {
+			font-size: 16px;
+		}
 	}
 
 	.btn {
 		border: 2px solid transparent;
 
+
+		&[data-size=small] {
+			font-size: 0.9em;
+			padding: 0.35em 0.9em;
+			border-radius: radius(round);
+			line-height: 1;
+		}
+
+		&:disabled {
+			pointer-events: none;
+			opacity: 0.3;
+		}
+
 		&[data-color=primary] {
 			color: hue(plain);
 			background-color: hue(primary);
-			border-color: color-mix(in srgb, hue(primary), #fff);
+			// border-color: color-mix(in srgb, hue(primary), #fff);
+
+			// &::after {
+			// 	content: '';
+			// 	position: absolute;
+			// 	top: -50%;
+			// 	left: -60%;
+			// 	width: 20%;
+			// 	height: 200%;
+			// 	background: rgba(255, 255, 255, 0.3);
+			// 	transform: rotate(30deg);
+			// 	transition: all 0.5s;
+			// }
+
+
+			// @include on-hover {
+
+			// 	&::after {
+			// 		left: 120%;
+			// 	}
+			// }
+
 		}
 
 		&[data-color=heavy] {
 			color: hue(plain);
 			background-color: hue(heavy);
-			border-color: color-mix(in srgb, hue(heavy), #fff);
+			// border-color: color-mix(in srgb, hue(heavy), #fff);
+
+			@include on-hover {
+				background-color: hue(primary);
+			}
+
 		}
 
 		&[data-color=plain] {
 			color: hue(heavy);
 			background-color: hue(plain);
-			border-color: color-mix(in srgb, hue(heavy), #fff);
+			// border-color: color-mix(in srgb, hue(heavy), #fff);
 
-			&::after {
-				content: none;
+			@include on-hover {
+				color: hue(primary);
+				border-color: hue(primary);
 			}
 
 		}
 
 
-		&::after {
-			content: '';
-			position: absolute;
-			top: -50%;
-			left: -60%;
-			width: 20%;
-			height: 200%;
-			background: rgba(255, 255, 255, 0.3);
-			transform: rotate(30deg);
-			transition: all 0.5s;
-		}
-
-
-		@include on-hover {
-
-			&::after {
-				left: 120%;
-			}
-		}
 
 
 	}

@@ -2,12 +2,13 @@
 	background-color: hue(heavy);
 	@include sec-p;
 	color: hue(plain);
-
+	border-top: 1px solid hue(second);
 
 	[data-block] {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		align-items: start;
+		gap: 12px;
 	}
 }
 
@@ -32,4 +33,14 @@
 	text-align: center;
 	color: hue(second);
 	margin-top: 30px;
+	user-select: none;
+
+	span {
+		transition: 0.2s color;
+		cursor: pointer;
+
+		@include on-hover {
+			color: hue(primary);
+		}
+	}
 }

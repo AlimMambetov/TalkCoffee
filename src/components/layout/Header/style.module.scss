@@ -1,9 +1,17 @@
 .wrap {
 	height: var(--header-h);
-	position: sticky;
+	position: fixed;
 	top: 0;
-	background-color: hue(plain);
-	z-index: z('pin');
+	left: 0;
+	width: 100%;
+	transition: 0.3s height, 0.3s box-shadow;
+
+	&[data-fixed] {
+		background-color: hue(plain);
+		z-index: z('pin');
+		height: calc(var(--header-h) - 15px);
+		box-shadow: 0 2px 12px hue(b, 0.15);
+	}
 }
 
 
