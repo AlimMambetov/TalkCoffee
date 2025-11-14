@@ -5,8 +5,11 @@
 
 
 :root {
-	--header-h: 80px;
-	--section-p: 80px;
+	--header-h: 90px;
+}
+
+* {
+	scroll-margin-top: 40px;
 }
 
 body,
@@ -17,5 +20,25 @@ html {
 
 
 body {
-	overflow-x: hidden;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+@mixin selected {
+	background-color: hue(primary);
+	color: hue(heavy);
+	text-shadow: none;
+}
+
+
+::selection {
+	@include selected;
+}
+
+::-moz-selection {
+	@include selected;
+}
+
+::-webkit-selection {
+	@include selected;
 }
