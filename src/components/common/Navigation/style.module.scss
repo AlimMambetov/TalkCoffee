@@ -1,0 +1,43 @@
+.nav {
+	display: inline-flex;
+	gap: 10px;
+
+
+
+	&[data-mode=footer] {
+		flex-wrap: wrap;
+		justify-content: center;
+
+		@include is('tablet', min) {
+			justify-content: start;
+		}
+
+		* {
+			color: hue('plain');
+		}
+	}
+
+	&[data-mode=vertical] {
+		flex-direction: column;
+	}
+
+}
+
+
+.link {
+	padding: 0.2em 0.5em;
+	white-space: nowrap;
+	color: currentColor;
+
+	* {
+		transition: color 0.2s;
+		font-weight: 500;
+	}
+
+	@include on-hover {
+		* {
+			color: hue(primary);
+		}
+	}
+
+}

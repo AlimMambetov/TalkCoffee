@@ -1,99 +1,22 @@
-@mixin line-clamp($num: 3) {
-	display: -webkit-box;
-	-webkit-line-clamp: $num;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
+@mixin sec-p {
+	--sec-p: 100px;
 
 
-@mixin is($device: "phone") {
-	$_value: map.get($viewport, $device);
-
-	@media(width > $_value) {
-		@content;
+	padding: {
+		top: var(--sec-p);
+		bottom: var(--sec-p);
 	}
-}
 
-@mixin a-value($prop, $min, $max) {
-	$_prop: $prop;
-	$_props: (
-		fz: font-size,
-		l: left,
-		r: right,
-		t: top,
-		b: bottom,
-		g: gap,
+	;
 
-		w: width,
-		max-w: max-width,
-		min-w: min-width,
 
-		h: height,
-		max-h: max-height,
-		min-h: min-height,
-
-		br: border-radius,
-		btr: border-top-right-radius,
-		btl: border-top-left-radius,
-		bbr: border-bottom-right-radius,
-		bbl: border-bottom-left-radius,
-
-		p: padding,
-		pr: padding-right,
-		pl: padding-left,
-		pt: padding-top,
-		pb: padding-bottom,
-
-		m: margin,
-		mr: margin-right,
-		ml: margin-left,
-		mt: margin-top,
-		mb: margin-bottom,
-	);
-
-@if map.get($_props, $prop) {
-	$_prop: map.get($_props, $prop);
 }
 
 
-#{$_prop}: clamp($min, $min, $max);
-
-@media(width > screen('phone')) {
-	#{$_prop}: calc($min + (($max - $min) * 0.25))
-}
-
-@media(width > screen('tablet')) {
-	#{$_prop}: calc($min + (($max - $min) * 0.50))
-}
-
-@media(width > screen('laptop')) {
-	#{$_prop}: calc($min + (($max - $min) * 0.75))
-}
-
-@media(width > screen('desktop')) {
-	#{$_prop}: clamp($min, $max , $max)
-}
-
-}
-
-@mixin hover($disable-active: false) {
-
-	@media(hover: hover) {
+@mixin on-hover {
+	@media (hover: hover) and (pointer: fine) {
 		&:not([disabled]):hover {
-			@content
-		}
-
-		;
-	}
-
-	@media(hover: none) {
-		@if($disable-active ==false) {
-			&:active {
-				@content
-			}
-
-			;
+			@content;
 		}
 	}
 }
@@ -245,11 +168,6 @@
 	;
 }
 
-@mixin pseudo($content: '', $display: block, $pos: absolute) {
-	content: $content;
-	display: $display;
-	position: $pos;
-}
 
 @mixin line-clamp($lines: 1) {
 	display: -webkit-box;
@@ -263,30 +181,4 @@
 	transition-duration: $time;
 	transition-timing-function: $anim;
 	transition-property: $props;
-}
-
-
-@mixin a-click($value: null) {
-	@if($value !=null) {
-		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28), $value;
-	}
-
-	@else {
-		transition: scale 0.15s cubic-bezier(.65, 1.99, .7, 1.28);
-	}
-
-	;
-
-	&:active {
-		scale: 0.9;
-		@content;
-	}
-}
-
-
-
-@mixin sec-p {
-
-	@include a-value(pt, 60px, 100px);
-	@include a-value(pb, 60px, 100px);
 }

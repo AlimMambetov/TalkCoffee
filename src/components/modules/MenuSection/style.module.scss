@@ -1,0 +1,118 @@
+.wrap {
+	@include sec-p;
+	position: relative;
+	overflow: hidden;
+
+	@include is('laptop', min) {
+		overflow: visible;
+	}
+}
+
+
+.container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	gap: 40px;
+
+	@include is('tablet', min) {
+		gap: 64px;
+	}
+}
+
+
+.info {
+	display: flex;
+	flex-direction: column;
+	max-width: 780px;
+	gap: 45px;
+}
+
+.nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-bottom: 1px solid hue(second);
+
+	&__item {
+		position: relative;
+		cursor: pointer;
+		user-select: none;
+		transition: 0.2s color;
+		padding: 0.5em 0.3em;
+
+		@include on-hover {
+			color: hue(primary);
+		}
+
+		.line {
+			position: absolute;
+			left: 0;
+			bottom: -2px;
+			width: 100%;
+			height: 4px;
+			background-color: hue(primary);
+			border-radius: 10px;
+		}
+
+		&[data-active] {
+			pointer-events: none;
+		}
+	}
+}
+
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	@include is('tablet', min) {
+		gap: 40px;
+	}
+
+	&__category {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: 1fr;
+		column-gap: 14px;
+
+		@include is('tablet', min) {
+			grid-template-columns: 1fr 1fr;
+			column-gap: 56px;
+		}
+	}
+
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid;
+		padding: 14px 0px;
+	}
+}
+
+
+.stars {
+	display: none;
+
+	@include is('laptop', min) {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		translate: 65%;
+		width: 500px;
+	}
+
+	@include is('desktop', min) {
+		translate: 55%;
+		width: auto;
+	}
+}

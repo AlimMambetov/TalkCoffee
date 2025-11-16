@@ -1,0 +1,33 @@
+:where(.link) {
+	font-weight: 300;
+	font-size: 18px;
+	color: hue(second);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3em;
+	cursor: pointer;
+	line-height: 0.8;
+	white-space: nowrap;
+}
+
+.link {
+	transition: color 0.3s;
+
+	svg {
+		transition: color 1.5s;
+		font-size: 0.85em;
+		translate: 0 -0.1em;
+	}
+
+	@include on-hover {
+		color: hue(primary);
+
+		svg {
+			color: hue(primary);
+			transition: color 0.5s;
+		}
+
+	}
+
+
+}

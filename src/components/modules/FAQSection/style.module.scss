@@ -1,0 +1,62 @@
+.wrap {
+	@include sec-p;
+	background-color: hue(heavy);
+	color: hue(plain);
+	position: relative;
+	overflow: hidden;
+
+	h2 {
+		user-select: none;
+	}
+
+	[data-star='1'] {
+		position: absolute;
+		right: -130px;
+		top: 90px;
+		font-size: 300px;
+
+		@include is('tablet', min) {
+			right: auto;
+			left: 50px;
+			top: 250px;
+		}
+	}
+
+	[data-star='2'] {
+		position: absolute;
+		left: -90px;
+		bottom: 100px;
+		font-size: 350px;
+		rotate: 30deg;
+
+		@include is('tablet', min) {
+			left: auto;
+			right: 20px;
+			bottom: 300px;
+		}
+	}
+}
+
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+
+	@include is('tablet', min) {
+		gap: 18px;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	position: relative;
+	z-index: z('block');
+}
+
+
+.btn {
+	align-self: center;
+}

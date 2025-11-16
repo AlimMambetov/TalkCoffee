@@ -1,0 +1,96 @@
+@mixin h-p {
+	--p: 14px;
+
+	@include is('tablet', min) {
+		--p: 50px;
+	}
+
+	padding: {
+		right: var(--p);
+		left: var(--p);
+	}
+
+	;
+}
+
+.wrap {
+	background-color: hue(primary);
+	border-radius: radius('S');
+	overflow: hidden;
+	transition: border-radius 0.3s;
+
+	@include is('tablet', min) {
+		border-radius: radius('M');
+	}
+
+
+	&[data-active] {
+		padding-bottom: 30px;
+
+		.preview svg {
+			rotate: 135deg;
+		}
+	}
+}
+
+
+
+.preview {
+	padding: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	user-select: none;
+	background-color: hue(primary);
+	color: hue(plain);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	gap: 5px;
+
+	@include is('tablet', min) {
+		padding: 20px 0;
+		gap: 10px;
+	}
+
+	@include h-p;
+
+	svg {
+		--size: 22px;
+		width: var(--size);
+		height: var(--size);
+		min-width: var(--size);
+		min-height: var(--size);
+		transition: rotate 0.3s;
+
+		@include is('tablet', min) {
+			--size: 40px;
+		}
+	}
+}
+
+.title {
+	white-space: nowrap;
+	overflow: hidden;
+	max-width: 100%;
+	text-overflow: ellipsis;
+}
+
+.content {
+	@include h-p;
+	background-color: hue(plain);
+	color: hue(heavy);
+	transition: 0.3s padding;
+}
+
+
+.text {
+	padding: 10px 0;
+	white-space: pre-line;
+	hyphens: auto;
+	// text-align: justify;
+
+	@include is('tablet', min) {
+		padding: 30px 0;
+	}
+}

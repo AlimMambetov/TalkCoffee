@@ -1,0 +1,68 @@
+.wrap {
+	background-color: hue(heavy);
+	@include sec-p;
+	color: hue(plain);
+	border-top: 1px solid hue(second);
+
+
+	[data-block] {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+
+		@include is('laptop', min) {
+			align-items: start;
+		}
+	}
+}
+
+
+.logo {
+	@include is('laptop', max) {
+		width: 150px !important;
+	}
+}
+
+.grid {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+
+
+	@include is('laptop', min) {
+		display: grid;
+		grid-template-columns: 0.8fr 1.3fr 0.8fr;
+		gap: 40px;
+	}
+
+	@include is('desktop', min) {
+		grid-template-columns: 0.8fr 1fr 0.8fr;
+	}
+}
+
+
+.nav,
+.socials {
+	align-self: center;
+}
+
+
+.date {
+	grid-column: span 3;
+	text-align: center;
+	color: hue(second);
+	margin-top: 30px;
+	user-select: none;
+
+	span {
+		transition: 0.2s color;
+		cursor: pointer;
+
+		@include on-hover {
+			color: hue(primary);
+		}
+	}
+}

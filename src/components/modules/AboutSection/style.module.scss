@@ -1,0 +1,87 @@
+.wrap {
+	@include sec-p;
+	background-color: hue('heavy');
+	position: relative;
+	overflow: hidden;
+
+	@include is('tablet', min) {
+		background-color: hue('primary');
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	z-index: z('block');
+	position: relative;
+
+	@include is('tablet', min) {
+		gap: 40px;
+	}
+}
+
+.title {
+	margin-bottom: 9px;
+	color: hue('plain');
+}
+
+.text {
+	max-width: 500px;
+	color: hue('plain');
+	text-align: justify;
+	hyphens: auto;
+}
+
+
+.preview {
+	position: absolute;
+	width: 100vw;
+	height: 100%;
+	top: 0;
+	right: 0;
+	filter: brightness(20%) blur(2px);
+
+	@include is('tablet', min) {
+		width: 50vw;
+	}
+
+	@include is('laptop', min) {
+		width: 45vw;
+		filter: brightness(100%);
+	}
+
+	@include is('desktop', min) {
+		width: 50vw;
+	}
+
+	[alt=texture] {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 500%;
+	}
+
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center center;
+		animation: moveObjectY 10s ease-in-out infinite;
+	}
+}
+
+
+@keyframes moveObjectY {
+
+	0%,
+	100% {
+		object-position: center 30%;
+		/* Начальная и конечная позиция */
+	}
+
+	50% {
+		object-position: center 70%;
+		/* Пиковая позиция внизу */
+	}
+}

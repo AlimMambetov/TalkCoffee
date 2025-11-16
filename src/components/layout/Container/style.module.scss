@@ -1,0 +1,28 @@
+:where(.cont) {
+	margin: {
+		right: auto;
+		left: auto;
+	}
+
+	;
+	--p: 20px;
+	width: min(calc(100% - var(--p)), screen(tablet));
+
+	@media(width > screen(tablet)) {
+		--p: 40px;
+		width: min(calc(100% - var(--p)), calc(screen(tablet) - var(--p)));
+	}
+
+	@media(width > screen(laptop)) {
+		--p: 60px;
+		width: min(calc(100% - var(--p)), calc(screen(laptop) - var(--p)));
+	}
+
+	@media(width > screen(desktop)) {
+		--p: 80px;
+		width: min(calc(100% - var(--p)), calc(screen(desktop) - var(--p)));
+	}
+
+}
+
+.cont {}

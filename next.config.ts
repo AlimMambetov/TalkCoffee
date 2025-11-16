@@ -4,6 +4,9 @@ import path from 'path';
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: false,
+  env: {
+    APP_VERSION: process.env.npm_package_version,
+  },
   logging: {
     fetches: {
       fullUrl: false,

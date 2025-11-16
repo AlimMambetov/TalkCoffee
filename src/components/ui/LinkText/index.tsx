@@ -1,11 +1,27 @@
 'use client'
 import React from 'react';
 import cls from './style.module.scss';
+import clsx from 'clsx';
+import { motion, MotionProps } from 'motion/react';
+import { T_iconNames } from '@/types';
+import Icon from '../Icon';
 
-export const LinkText = (props: any) => {
+
+export type T_LinkText =
+	React.ComponentProps<'a'> &
+	React.ComponentProps<typeof motion.a> & {
+		icon?: T_iconNames,
+	} & MotionProps;
+
+export const LinkText = ({ children, style, className, icon, ...props }: T_LinkText) => {
 
 
-	return (<>LinkText</>)
+	return (<><motion.a
+		target='_blanck'
+		className={clsx(className, cls.link)}
+		style={{ ...style } as React.CSSProperties}
+		{...props}
+	>{icon && <Icon name={icon} />} {children}</motion.a></>)
 }
 
 export default LinkText;
