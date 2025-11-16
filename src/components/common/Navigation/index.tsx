@@ -8,11 +8,12 @@ import { Text } from '@/components/ui';
 export type T_Navigation =
 	React.ComponentProps<'div'> &
 	React.ComponentProps<typeof motion.div> & {
-		mode?: 'header' | 'footer';
+		mode?: 'header' | 'footer' | 'vertical';
+		onClickItem?: (e?: any) => void;
 	} & MotionProps;
 
 
-export const Navigation = ({ className, mode = 'header', ...props }: T_Navigation) => {
+export const Navigation = ({ className, mode = 'header', onClickItem, ...props }: T_Navigation) => {
 
 	const navs = [
 		{ key: 'menu', value: 'Меню' },
@@ -28,7 +29,7 @@ export const Navigation = ({ className, mode = 'header', ...props }: T_Navigatio
 
 	return (<>
 		<nav data-mode={mode} className={clsx(cls.nav, className)}>
-			{filteredNavs.map(el => <a className={cls.link} href={`#${el.key}`} key={el.key}><Text size={3}>{el.value}</Text></a>)}
+			{filteredNavs.map(el => <a onClick={onClickItem} className={cls.link} href={`#${el.key}`} key={el.key}><Text size={3}>{el.value}</Text></a>)}
 		</nav>
 	</>)
 }

@@ -1,5 +1,6 @@
 .wrap {
 	@include sec-p;
+	overflow: hidden;
 
 	h2 svg {
 		cursor: pointer;
@@ -19,7 +20,11 @@
 
 .controlls {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
+
+	@include is('tablet', min) {
+		justify-content: space-between;
+	}
 }
 
 .arrows {

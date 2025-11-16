@@ -10,15 +10,19 @@
 .text {
 
 	&[data-size="1"] {
-		font-size: 26px;
+		font-size: 16px;
 
-		@include is('phone') {
-			font-size: 15px;
+		@include is('tablet', min) {
+			font-size: 26px;
 		}
 	}
 
 	&[data-size="2"] {
-		font-size: 22px;
+		font-size: 16px;
+
+		@include is('tablet', min) {
+			font-size: 22px;
+		}
 	}
 
 	&[data-size="3"] {
@@ -26,7 +30,12 @@
 	}
 
 	&[data-size="4"] {
-		font-size: 16px;
+		font-size: 14px;
+
+		@include is('tablet', min) {
+			font-size: 16px;
+		}
+
 	}
 
 

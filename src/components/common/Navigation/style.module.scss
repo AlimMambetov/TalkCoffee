@@ -3,8 +3,22 @@
 	gap: 10px;
 
 
-	&[data-mode=footer] * {
-		color: hue('plain');
+
+	&[data-mode=footer] {
+		flex-wrap: wrap;
+		justify-content: center;
+
+		@include is('tablet', min) {
+			justify-content: start;
+		}
+
+		* {
+			color: hue('plain');
+		}
+	}
+
+	&[data-mode=vertical] {
+		flex-direction: column;
 	}
 
 }

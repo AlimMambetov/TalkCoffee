@@ -8,8 +8,10 @@ export const Logo = ({ className, onClick, ...props }: any) => {
 
 	const handleClick = (e: any) => {
 		if (typeof onClick == 'function') onClick(e);
-		location.reload()
+		window.scrollTo(0, 0);
+		location.reload();
 	}
+
 	return (
 		<Icon {...props} className={clsx(cls.logo, className)} onClick={handleClick} name='logo' />
 	)

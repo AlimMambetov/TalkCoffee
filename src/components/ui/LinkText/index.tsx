@@ -20,6 +20,7 @@ export const LinkText = ({ children, style, className, icon, ...props }: T_LinkT
 		target='_blanck'
 		className={clsx(className, cls.link)}
 		style={{ ...style } as React.CSSProperties}
+		{...props}
 	>{icon && <Icon name={icon} />} {children}</motion.a></>)
 }
 

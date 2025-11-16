@@ -6,17 +6,21 @@
 }
 
 h1.title {
-	font-size: 74px;
+	font-size: 44px;
 	line-height: 0.9;
 
-	@include is('phone') {
-		font-size: 24px;
+	@include is('tablet', min) {
+		font-size: 74px;
 	}
 }
 
 h2.title {
-	font-size: 64px;
+	font-size: 36px;
 	line-height: 0.9;
+
+	@include is('tablet', min) {
+		font-size: 64px;
+	}
 }
 
 h3.title {
@@ -24,11 +28,20 @@ h3.title {
 }
 
 h4.title {
-	font-size: 35px;
+	font-size: 18px;
+	line-height: 1.2;
+
+	@include is('tablet', min) {
+		font-size: 35px;
+	}
 }
 
 h5.title {
-	font-size: 24px;
+	font-size: 14px;
+
+	@include is('tablet', min) {
+		font-size: 24px;
+	}
 }
 
 h6.title {

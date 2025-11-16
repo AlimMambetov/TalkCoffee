@@ -22,6 +22,8 @@ html {
 body {
 	overflow: hidden;
 	overflow-y: auto;
+	min-height: 100dvh;
+	min-width: screen(min);
 }
 
 @mixin selected {

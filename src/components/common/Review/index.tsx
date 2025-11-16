@@ -3,7 +3,7 @@ import React, { CSSProperties } from 'react';
 import cls from './style.module.scss';
 import clsx from 'clsx';
 import { Button, Icon, Text, Title } from '@/components/ui';
-import { useTruncation } from '@/hooks';
+import { useScreen, useTruncation } from '@/hooks';
 
 
 let test_avatar = 'https://img.freepik.com/free-photo/handsome-young-cheerful-man-with-arms-crossed_171337-1073.jpg?semt=ais_hybrid&w=740&q=80';
@@ -37,10 +37,11 @@ export const Review = ({
 	const { ref: nameRef, isTruncated: nameIsTruncated } = useTruncation<HTMLHeadingElement>();
 	const nameLetter = String(name.split(' ')[1]).charAt(0).toUpperCase();
 	const nameFirst = name.split(' ')[0];
+	const { isTouch } = useScreen();
 
 
 	return (<>
-		<div className={clsx(cls.wrap, className)}>
+		<div data-desktop={!isTouch || null} className={clsx(cls.wrap, className)}>
 			<div data-empty={!avatar || null} className={cls.avatar}>
 				{avatar ? <img src={`/images/persons/${avatar}.png`} alt={name} /> : <Icon name='user' />}
 			</div>

@@ -1,9 +1,13 @@
 @mixin h-p {
-	$p: 50px;
+	--p: 14px;
+
+	@include is('tablet', min) {
+		--p: 50px;
+	}
 
 	padding: {
-		right: $p;
-		left: $p;
+		right: var(--p);
+		left: var(--p);
 	}
 
 	;
@@ -11,9 +15,13 @@
 
 .wrap {
 	background-color: hue(primary);
-	border-radius: radius('M');
+	border-radius: radius('S');
 	overflow: hidden;
-	transition: 0.3s;
+	transition: border-radius 0.3s;
+
+	@include is('tablet', min) {
+		border-radius: radius('M');
+	}
 
 
 	&[data-active] {
@@ -28,7 +36,7 @@
 
 
 .preview {
-	padding: 20px 0;
+	padding: 10px 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -37,12 +45,27 @@
 	color: hue(plain);
 	border: none;
 	outline: none;
-	@include h-p;
 	cursor: pointer;
+	gap: 5px;
+
+	@include is('tablet', min) {
+		padding: 20px 0;
+		gap: 10px;
+	}
+
+	@include h-p;
 
 	svg {
-		font-size: 40px;
-		transition: 0.3s
+		--size: 22px;
+		width: var(--size);
+		height: var(--size);
+		min-width: var(--size);
+		min-height: var(--size);
+		transition: rotate 0.3s;
+
+		@include is('tablet', min) {
+			--size: 40px;
+		}
 	}
 }
 
@@ -62,8 +85,12 @@
 
 
 .text {
-	padding: 30px 0;
+	padding: 10px 0;
 	white-space: pre-line;
 	hyphens: auto;
-	text-align: justify;
+	// text-align: justify;
+
+	@include is('tablet', min) {
+		padding: 30px 0;
+	}
 }

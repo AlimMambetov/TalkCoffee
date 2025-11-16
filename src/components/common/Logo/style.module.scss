@@ -1,9 +1,13 @@
 .logo {
 	height: auto;
-	width: 130px;
 	cursor: pointer;
 	transition: color 0.3s;
+	width: 100px;
 
+
+	@include is('laptop', min) {
+		width: 130px;
+	}
 
 	@include on-hover {
 		color: hue(primary);

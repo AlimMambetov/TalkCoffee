@@ -9,6 +9,7 @@ import { Button, Icon, Title } from '@/components/ui';
 import reviews_data from '&/data/reviews.json';
 
 import 'swiper/css';
+import { useScreen } from '@/hooks';
 
 
 
@@ -16,12 +17,22 @@ export const ReviewsSection = (props: any) => {
 	const swiperRef = useRef<SwiperType | null>(null);
 	const [isBeginning, setIsBeginning] = useState(true);
 	const [isEnd, setIsEnd] = useState(false);
+	const { deviceType, isTouch } = useScreen();
 
+
+	const slidesPerView = {
+		'tablet': 1.7,
+		'laptop': 1.7,
+		'desktop': 2,
+	} as any;
 
 	const swiperOps = {
-		slidesPerView: 2,
-		slidesPerGroup: 2,
-		spaceBetween: 60,
+		slidesPerView: slidesPerView[deviceType] || 1.2,
+		slidesPerGroup: deviceType == 'desktop' ? 2 : 1,
+		style: {
+			overflow: deviceType == 'desktop' ? 'hidden' : 'visible',
+		},
+		spaceBetween: isTouch ? 30 : 60,
 		onSwiper: (swiper) => {
 			swiperRef.current = swiper;
 			setIsBeginning(swiper.isBeginning);
@@ -31,7 +42,6 @@ export const ReviewsSection = (props: any) => {
 			setIsBeginning(swiper.isBeginning);
 			setIsEnd(swiper.isEnd);
 		},
-
 	} as SwiperProps;
 
 
@@ -61,10 +71,12 @@ export const ReviewsSection = (props: any) => {
 					</Swiper>
 				</div>
 				<div className={cls.controlls}>
-					<div className={cls.arrows}>
-						<Button onClick={handlePrev} disabled={isBeginning} color='heavy'><Icon flipX name='arrow' /></Button>
-						<Button onClick={handleNext} disabled={isEnd} color='heavy'><Icon name='arrow' /></Button>
-					</div>
+					{!isTouch &&
+						<div className={cls.arrows}>
+							<Button onClick={handlePrev} disabled={isBeginning} color='heavy'><Icon flipX name='arrow' /></Button>
+							<Button onClick={handleNext} disabled={isEnd} color='heavy'><Icon name='arrow' /></Button>
+						</div>
+					}
 					<Button color='heavy'>Оставить отзыв</Button>
 				</div>
 			</Container>

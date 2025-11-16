@@ -5,18 +5,20 @@ import { Container } from '@/components/layout';
 import { Img, Text, Title } from '@/components/ui';
 import { AnimatePresence, motion } from 'motion/react';
 import imagesData from '&/data/gallery.json'
+import { useScreen } from '@/hooks';
 
 export const GallerySection = (props: any) => {
 	const [selectedId, setSelectedId] = useState<number | null>(null);
 	const getRatio = (ratio: string) => ({ gridColumn: `span ${ratio.split('x')[0]}`, gridRow: `span ${ratio.split('x')[1]}` } as CSSProperties);
-
+	const { isTouch } = useScreen()
+	console.log('test')
 
 	return (<>
 		<section id='gallery' className={cls.wrap}>
 			<Container className={cls.container}>
 				<Title size={2} decorLine>Галерея</Title>
 				<div className={cls.galleryGrid}>
-					<div style={getRatio('2x2')} className={cls.box}>
+					<div style={getRatio(isTouch ? '4x1' : '2x2')} className={cls.box}>
 						<Title size={4}>Наше<br />Заведение</Title>
 						<hr />
 						<Text size={2}>На фотографиях</Text>
@@ -30,7 +32,7 @@ export const GallerySection = (props: any) => {
 							onClick={() => setSelectedId(image.id)}
 							whileHover={{ scale: 0.95 }}
 							whileTap={{ scale: 0.90 }}
-							style={getRatio(image.ratio)}
+							style={getRatio(image.ratio?.[isTouch ? 1 : 0])}
 						>
 							<Img src={image.src} alt={image.title} />
 							{/* <motion.div className={cls.title}>

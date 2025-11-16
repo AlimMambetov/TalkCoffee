@@ -5,12 +5,16 @@
 	left: 0;
 	width: 100%;
 	transition: 0.3s height, 0.3s box-shadow;
+	z-index: z('pin');
+	background-color: hue(plain);
 
 	&[data-fixed] {
-		background-color: hue(plain);
-		z-index: z('pin');
-		height: calc(var(--header-h) - 15px);
+		height: calc(var(--header-h) - 34px);
 		box-shadow: 0 2px 12px hue(b, 0.15);
+
+		@include is('laptop', min) {
+			height: calc(var(--header-h) - 15px);
+		}
 	}
 }
 
@@ -23,8 +27,57 @@
 	gap: 4vw;
 }
 
+.menu {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	translate: -50% 100%;
+	background-color: hue(plain);
+	border: 3px solid hue(primary);
+	max-width: 300px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+	border-top: none;
+	border-bottom-right-radius: radius('M');
+	border-bottom-left-radius: radius('M');
+	box-shadow: 0 2px 20px hue(b, 0.5);
 
+	&::before {
+		position: absolute;
+		content: '';
+		left: 0;
+		top: 0;
+		translate: 0 -100%;
+		width: 100%;
+		height: 20%;
+		background-color: inherit;
+	}
+
+	* {
+		font-size: 28px !important;
+	}
+}
+
+.logo {
+	position: relative;
+	z-index: 1;
+}
 
 .nav {
 	flex: 1;
+}
+
+.hamburger {
+	font-size: 40px;
+	width: 60px;
+	position: relative;
+	aspect-ratio: 1/1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 50%;
+	translate: 0.3em;
 }

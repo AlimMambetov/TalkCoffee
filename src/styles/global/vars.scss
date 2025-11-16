@@ -40,26 +40,105 @@ $viewport: (
 	@return map.get($viewport, $name);
 }
 
-@mixin is($device: "phone") {
+
+
+@mixin is($device: "phone", $mode: exact) {
+	$modes: exact, max, min, range;
 	$devices: phone, tablet, laptop, desktop, max;
 	$index: list.index($devices, $device);
 
-	@if $index ==1 {
+	@if not $index {
+		@error "Unknown device: #{$device}. Available devices: #{list.join($devices, ', ')}";
+	}
+
+	// Режим "меньше или равно" (max)
+	@if $mode ==max {
+		@if $device ==max {
+			@error "Cannot use 'max' mode with 'max' device";
+		}
+
 		@media (max-width: map.get($viewport, $device)) {
 			@content;
 		}
 	}
 
-	@else {
-		$prev: nth($devices, $index - 1);
-		$min: map.get($viewport, $prev) + 1px;
+	// Режим "больше или равно" (min)
+	@else if $mode ==min {
+		@if $device ==phone {
+
+			// Все устройства начиная с phone (включая phone)
+			@media (min-width: 0px) {
+				@content;
+			}
+		}
+
+		@else if $device ==max {
+			@error "Cannot use 'min' mode with 'max' device";
+		}
+
+		@else {
+			// Находим предыдущее устройство для определения min-width
+			$prev-device: list.nth($devices, $index);
+			$min-width: map.get($viewport, $prev-device) + 1px;
+
+			@media (min-width: $min-width) {
+				@content;
+			}
+		}
+	}
+
+	// Режим "диапазон" (range) - между устройствами
+	@else if $mode ==range {
+		@if $device ==phone or $device ==max {
+			@error "Cannot use 'range' mode with '#{$device}' device";
+		}
+
+		$prev-device: list.nth($devices, $index - 1);
+		$min: map.get($viewport, $prev-device) + 1px;
 		$max: map.get($viewport, $device);
 
 		@media (min-width: $min) and (max-width: $max) {
 			@content;
 		}
 	}
+
+	// Режим "точно" (exact) - оригинальная логика
+	@else if $mode ==exact {
+		@if $index ==1 {
+
+			// phone
+			@media (max-width: map.get($viewport, $device)) {
+				@content;
+			}
+		}
+
+		@else if $device ==max {
+			// desktop and larger
+			$prev-device: list.nth($devices, $index - 1);
+			$min-width: map.get($viewport, $prev-device) + 1px;
+
+			@media (min-width: $min-width) {
+				@content;
+			}
+		}
+
+		@else {
+			// tablet, laptop
+			$prev-device: list.nth($devices, $index - 1);
+			$min: map.get($viewport, $prev-device) + 1px;
+			$max: map.get($viewport, $device);
+
+			@media (min-width: $min) and (max-width: $max) {
+				@content;
+			}
+		}
+	}
+
+	@else {
+		@error "Unknown mode: #{$mode}. Available modes: #{list.join($modes, ', ')}";
+	}
 }
+
 
 $radius: (
 	round: 100000px,

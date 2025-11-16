@@ -14,7 +14,7 @@ export const HeroSection = (props: any) => {
 				<div className={cls.info}>
 					<Title>Talk Coffee — место,<br />где рождаются<br />вкусные разговоры</Title>
 					<Text className={cls.text}>Кофе с характером, десерты с душой<br />В самом сердце Чегема</Text>
-					<Button>Посмотреть меню</Button>
+					<Button href="#menu">Посмотреть меню</Button>
 				</div>
 			</Container>
 		</div>

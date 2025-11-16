@@ -13,6 +13,7 @@ export type T_ButtonProps = ComponentProps<typeof motion.button> & {
 	color?: 'primary' | 'heavy' | 'plain';
 	size?: 'normal' | 'small';
 	w?: string;
+	href?: string;
 }
 
 
@@ -24,6 +25,8 @@ export const Button = ({
 	w = 'fit-content',
 	className,
 	style,
+	href,
+	onClick,
 	...props }: T_ButtonProps) => {
 
 
@@ -36,7 +39,11 @@ export const Button = ({
 		className: clsx(className, cls.btn),
 		"data-color": color,
 		"data-size": size,
-		whileTap: { scale: 0.95 }
+		whileTap: { scale: 0.95 },
+		onClick: (e: any) => {
+			if (onClick) onClick(e);
+			if (href) location.hash = href;
+		}
 	} as MotionProps
 
 

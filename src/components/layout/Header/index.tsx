@@ -2,15 +2,16 @@
 import React, { useState } from 'react';
 import cls from './style.module.scss';
 import { Logo, Navigation } from '@/components/common';
-import { Button, Icon } from '@/components/ui';
+import { Button } from '@/components/ui';
 import Container from '../Container';
-import { useScroll, motion, useMotionValueEvent } from 'motion/react';
-import { useDevice } from '@/hooks';
+import { useScreen } from '@/hooks';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import HamburgerMenu from './HamburgerMenu';
 
 export const Header = (props: any) => {
 	const [headerPin, SET_headerPin] = useState(false);
 	const { scrollY } = useScroll();
-	const device = useDevice();
+	const { isTouch } = useScreen();
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		const currentScroll = Math.floor(latest);
@@ -19,18 +20,18 @@ export const Header = (props: any) => {
 	});
 
 
-	if (!device) return;
-
-
 	return (<>
 		<motion.header data-fixed={headerPin || null} className={cls.wrap}>
 			<Container className={cls.grid}>
 				<Logo className={cls.logo} />
 				{
-					device.isDesktop && <>
-						<Navigation className={cls.nav} />
-						<Button className={cls.btn} color='heavy'>Связаться с нами</Button>
-					</>
+					isTouch ?
+						<HamburgerMenu />
+						:
+						<>
+							<Navigation className={cls.nav} />
+							<Button className={cls.btn} color='heavy'>Связаться с нами</Button>
+						</>
 				}
 			</Container>
 		</motion.header>
