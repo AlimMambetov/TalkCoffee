@@ -45,7 +45,7 @@ export const Review = ({
 			<div data-empty={!avatar || null} className={cls.avatar}>
 				{avatar ? <img src={`/images/persons/${avatar}.png`} alt={name} /> : <Icon name='user' />}
 			</div>
-			<Title ref={nameRef} className={cls.name} size={4}>{!nameIsTruncated ? name : <>{nameFirst} {nameLetter}.</>}</Title>
+			<Title className={cls.name} size={4}>{!nameIsTruncated ? name : <>{nameFirst} {nameLetter}.</>}</Title>
 			<Text className={cls.text} size={4} dangerouslySetInnerHTML={{ __html: text }}></Text>
 			<div className={cls.controlls}>
 				<div className={cls.socials}>
