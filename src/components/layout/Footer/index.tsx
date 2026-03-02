@@ -4,8 +4,14 @@ import cls from './style.module.scss';
 import Container from '../Container';
 import { LinkText, Text } from '@/components/ui';
 import { Logo, Navigation, Socials } from '@/components/common';
+import { useRouter } from 'next/navigation';
 
 export const Footer = (props: any) => {
+	const router = useRouter();
+
+	const toPrivacy = () => {
+		router.push('/privacy-policy')
+	}
 
 	return (<>
 		<footer id='contacts' className={cls.wrap}>
@@ -21,8 +27,8 @@ export const Footer = (props: any) => {
 				</div>
 				<div data-block="docs">
 					<Text size={3}>Документы</Text>
-					<LinkText>Публичная оферта</LinkText>
-					<LinkText>Политика конфиденциальности</LinkText>
+					<LinkText onClick={toPrivacy}>Публичная оферта</LinkText>
+					<LinkText onClick={toPrivacy}>Политика конфиденциальности</LinkText>
 					<LinkText>ООО «Talk Coffee», ИП Иванов И.И.</LinkText>
 				</div>
 				<div data-block="contacts">

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import cls from './style.module.scss';
 import { Container } from '@/components/layout';
 import { Img, Text, Title } from '@/components/ui';
@@ -17,6 +17,36 @@ export const MenuSection = (props: any) => {
 	const activeData: T_MenuCategory[] = menuData[menuIndex]?.category;
 	const navList: string[] = menuData.map(el => el.name);
 
+	const sectionRef = useRef(null);
+	const isInView = useInView(sectionRef, {
+		once: true, // анимация сработает только один раз
+		amount: 0.3 // 30% элемента должно быть видно
+	});
+
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.2,
+				delayChildren: 0.1
+			}
+		}
+	} as any
+
+	const itemVariants = {
+		hidden: { y: 30, opacity: 0 },
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				type: "spring",
+				damping: 12,
+				stiffness: 100
+			}
+		}
+	} as any
+
 	useEffect(() => {
 		if (menuListRef.current) {
 			const resizeObserver = new ResizeObserver((entries) => {
@@ -31,10 +61,15 @@ export const MenuSection = (props: any) => {
 	}, [activeData]);
 
 	return (
-		<section id='menu' className={cls.wrap}>
-			<Container className={cls.container}>
-				<Title size={2} decorLine>Меню</Title>
-				<div className={cls.info}>
+		<section ref={sectionRef} id='menu' className={cls.wrap}>
+			<Container
+				variants={containerVariants}
+				initial="hidden"
+				animate={isInView ? "visible" : "hidden"}
+				className={cls.container}
+			>
+				<Title variants={itemVariants} size={2} decorLine>Меню</Title>
+				<motion.div variants={itemVariants} className={cls.info}>
 					<MenuNav data={navList} setter={setMenuIndex} activeIndex={menuIndex} />
 
 					<motion.div
@@ -50,20 +85,14 @@ export const MenuSection = (props: any) => {
 					>
 						<div ref={menuListRef}>
 							<AnimatePresence mode="wait">
-								<motion.div
-									key={menuIndex}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{ duration: 0.2 }}
-								>
+								<motion.div>
 									<MenuList data={activeData} />
 								</motion.div>
 							</AnimatePresence>
 						</div>
 					</motion.div>
-				</div>
-				<Img src={'/images/stars.svg'} className={cls.stars} />
+				</motion.div>
+				<Img variants={containerVariants} src={'/images/stars.svg'} className={cls.stars} />
 			</Container>
 		</section>
 	)

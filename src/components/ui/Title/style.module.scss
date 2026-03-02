@@ -10,7 +10,7 @@ h1.title {
 	line-height: 0.9;
 
 	@include is('tablet', min) {
-		font-size: 74px;
+		font-size: 70px;
 	}
 }
 

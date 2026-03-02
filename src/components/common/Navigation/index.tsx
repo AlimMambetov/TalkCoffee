@@ -19,7 +19,7 @@ export const Navigation = ({ className, mode = 'header', onClickItem, ...props }
 		{ key: 'menu', value: 'Меню' },
 		{ key: 'gallery', value: 'Галерея' },
 		{ key: 'about', value: 'О нас' },
-		{ key: 'reviews', value: 'Отзывы' },
+		// { key: 'reviews', value: 'Отзывы' },
 		{ key: 'contacts', value: 'Контакты' },
 	] as const;
 

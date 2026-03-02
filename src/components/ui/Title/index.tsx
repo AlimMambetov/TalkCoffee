@@ -4,13 +4,15 @@ import cls from './style.module.scss'
 import { motion, MotionProps } from 'motion/react'
 import clsx from 'clsx'
 
+
 type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
+// Используем ComponentPropsWithoutRef для получения правильных HTML атрибутов
 export type T_TitleProps = {
 	size?: HeadingLevel;
 	decorLine?: boolean;
 } & MotionProps &
-	React.ComponentProps<`h${HeadingLevel}`>
+	Omit<React.ComponentPropsWithoutRef<'h1'>, keyof MotionProps | 'size' | 'decorLine'> // Исключаем конфликтующие пропсы
 
 const headingTags = {
 	1: motion.h1,
@@ -26,15 +28,13 @@ export const Title = ({
 	size = 1,
 	decorLine = false,
 	className,
-	style,
-	...props
+	...props // Убираем style из деструктуризации
 }: T_TitleProps) => {
 	const MotionHeading = headingTags[size]
 
 	return (
 		<MotionHeading
 			{...props}
-			style={{ ...style } as React.CSSProperties}
 			data-line={decorLine || null}
 			className={clsx(className, cls.title)}
 		>
@@ -42,5 +42,3 @@ export const Title = ({
 		</MotionHeading>
 	)
 }
-
-export default Title

@@ -31,6 +31,15 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
+  // Добавляем поддержку импорта MD файлов
+  turbopack: {
+    rules: {
+      '*.md': {
+        loaders: ['raw-loader'], // Используем установленный raw-loader
+        as: '*.js',
+      },
+    },
+  },
 
 };
 

@@ -10,7 +10,7 @@ export const MainPage = (props: any) => {
 		<MenuSection />
 		<GallerySection />
 		<AboutSection />
-		<ReviewsSection />
+		{/* <ReviewsSection /> */}
 		<FAQSection />
 	</>)
 }

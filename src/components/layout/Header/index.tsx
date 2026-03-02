@@ -7,11 +7,18 @@ import Container from '../Container';
 import { useScreen } from '@/hooks';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import HamburgerMenu from './HamburgerMenu';
+import { usePathname, useRouter } from 'next/navigation';
 
 export const Header = (props: any) => {
 	const [headerPin, SET_headerPin] = useState(false);
 	const { scrollY } = useScroll();
 	const { isTouch } = useScreen();
+	const pathname = usePathname();
+	const router = useRouter();
+
+	const toMain = () => {
+		router.push('/')
+	}
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		const currentScroll = Math.floor(latest);
@@ -25,13 +32,18 @@ export const Header = (props: any) => {
 			<Container className={cls.grid}>
 				<Logo className={cls.logo} />
 				{
-					isTouch ?
-						<HamburgerMenu />
-						:
-						<>
-							<Navigation className={cls.nav} />
-							<Button className={cls.btn} color='heavy'>Связаться с нами</Button>
-						</>
+					pathname !== '/' && <Button onClick={toMain} color='heavy' className={cls.back}>На главную</Button>
+				}
+				{
+					pathname == '/' && (
+						isTouch ?
+							<HamburgerMenu />
+							:
+							<>
+								<Navigation className={cls.nav} />
+								<Button className={cls.btn} color='heavy' href='tel:+79281314213' >Позвонить</Button>
+							</>
+					)
 				}
 			</Container>
 		</motion.header>
